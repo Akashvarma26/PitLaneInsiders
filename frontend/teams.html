@@ -3,96 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teams - Pit Lane Insider</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>F1 Teams</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="index.html">Pit Lane Insider</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Teams</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="f1info.html">F1 Info</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="predictions.html">Predictions</a>
-                </li>
-            </ul>
+
+<body style="background-color:#000001">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="main.html">F1 World</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="teams.html">Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="drivers.html">Drivers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quiz/quiz.html">F1 Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="predictions.html">Predictions</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <div class="container my-5">
-        <header class="text-center my-4">
-            <h1 class="display-4">F1 Teams</h1>
-            <p class="lead">Get to know the teams that make Formula 1 exciting!</p>
-        </header>
-
+    <div class="container mt-4">
+        <h2 class="text-white text-center">F1 Teams</h2>
+        <br>
         <div class="row">
             <div class="col-md-4 mb-4">
-                <div class="card shadow-sm h-100">
-                    <img src="path_to_team_logo1" class="card-img-top" alt="Team Logo">
+                <div class="card h-100 text-bg-light">
+                    <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/manual/2023/Launches2023/Ferrari2023Launch/Ferrari%20side" alt="Ferrari banner image." class="card-img-top banner">
                     <div class="card-body">
-                        <h5 class="card-title">Team Name 1</h5>
-                        <p class="card-text">Brief description about the team, its history, achievements, and key players.</p>
+                        <h5 style="font-weight:bolder" class="card-title">Scuderia Ferrari</h5>
+                        <p class="card-text">
+                            Scuderia Ferrari, one of the most illustrious teams in Formula 1. Led by the Team Principal, Mattia Binotto, the team's Technical Director spearheads the design and development of its cars, emphasizing engineering excellence. Notably, the drivers, including Charles Leclerc and Carlos Sainz Jr., stand as the public face of Ferrari, tasked with maneuvering the scarlet machines to victory.
+                        </p>
                     </div>
-                    <div class="card-footer text-center">
-                        <a href="#" class="btn btn-primary">Read More</a>
+                    <div class="card-footer">
+                        <a href="https://www.ferrari.com/en-EN/formula1" target="_blank" class="btn btn-link">Visit Ferrari</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card shadow-sm h-100">
-                    <img src="path_to_team_logo2" class="card-img-top" alt="Team Logo">
+                <div class="card h-100 text-bg-light">
+                    <img src="https://images.ctfassets.net/1fvlg6xqnm65/7szyqaWdqxWB2qERhuNR7n/96570dace67b2fc7a0bf964571f6a32c/3_Side_GR.jpg" alt="Mercedes banner image." class="card-img-top banner">
                     <div class="card-body">
-                        <h5 class="card-title">Team Name 2</h5>
-                        <p class="card-text">Brief description about the team, its history, achievements, and key players.</p>
+                        <h5 style="font-weight:bolder; text-align:center" class="card-title">Mercedes</h5>
+                        <p class="card-text">
+                            The Mercedes Formula 1 team, led by the formidable Toto Wolff as team principal, dominates the grid with their cutting-edge technology and strategic prowess. Spearheading their charge is the unparalleled talent of Lewis Hamilton, a seven-time World Champion whose skill and determination consistently propel Mercedes to the front of the pack.
+                        </p>
                     </div>
-                    <div class="card-footer text-center">
-                        <a href="#" class="btn btn-primary">Read More</a>
+                    <div class="card-footer">
+                        <a href="https://www.mercedesamgf1.com/" target="_blank" class="btn btn-link">Visit Mercedes</a>
                     </div>
                 </div>
             </div>
+            <br>
             <div class="col-md-4 mb-4">
-                <div class="card shadow-sm h-100">
-                    <img src="path_to_team_logo3" class="card-img-top" alt="Team Logo">
+                <div class="card h-100 text-bg-light">
+                    <img src="https://w0.peakpx.com/wallpaper/97/668/HD-wallpaper-2022-aston-martin-amr22-formula-1-open-top-race-car-turbo-v6.jpg" alt="Aston Martin banner image." class="card-img-top banner" style="width: 100%; height: auto; object-fit: cover;">
                     <div class="card-body">
-                        <h5 class="card-title">Team Name 3</h5>
-                        <p class="card-text">Brief description about the team, its history, achievements, and key players.</p>
+                        <h5 style="font-weight:bolder; text-align:center" class="card-title">Aston Martin</h5>
+                        <p class="card-text">
+                            The Aston Martin F1 Team, based in Silverstone, England, is owned by Lawrence Stroll and features a driver lineup with experience and youth. Two-time Formula One World Champion Fernando Alonso partners with Lance Stroll, the son of the team owner.
+                        </p>
                     </div>
-                    <div class="card-footer text-center">
-                        <a href="#" class="btn btn-primary">Read More</a>
+                    <div class="card-footer">
+                        <a href="https://www.astonmartinf1.com/en-GB/" target="_blank" class="btn btn-link">Visit Aston Martin</a>
                     </div>
                 </div>
             </div>
-            <!-- Repeat similar blocks for other teams -->
-        </div>
-    </div>
+            <br>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-bg-light">
+                    <img src="https://staticg.sportskeeda.com/editor/2024/02/5af96-17092068625876-1920.jpg" alt="Alpine banner image." class="card-img-top banner" style="width: 100%; height: 42%; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 style="font-weight:bolder; text-align:center" class="card-title">Alpine</h5>
+                        <p class="card-text">
+                            The Alpine F1 Team, based in Enstone, Oxfordshire, England, is the rebranded team of Renault, emphasizing French automotive excellence. Under the leadership of Laurent Rossi, the team is aiming for new heights in Formula 1. The driver lineup includes the experienced Pierre Gasly and the talented Esteban Ocon.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://www.formula1.com/en/teams/alpine" target="_blank" class="btn btn-link">Visit Alpine</a>
+                    </div>
+                </div>
+            </div>
 
-    <footer class="py-5 bg-dark text-white">
-        <div class="container text-center">
-            <p class="m-0">© 2024 Pit Lane Insider. All rights reserved.</p>
-            <p class="m-0">
-                <a href="#" class="text-white"><i class="fab fa-facebook-f mx-2"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-twitter mx-2"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-instagram mx-2"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-linkedin mx-2"></i></a>
-            </p>
-        </div>
-    </footer>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-bg-light">
+                    <img src="https://media.formula1.com/image/upload/t_16by9Centre/f_auto/q_auto/v1707158155/fom-website/2023/Kick%20Sauber/C44_ST-LHS_Stake_ZHO_4000x3000_150DPI.jpg" alt="Kick Sauber banner image." class="card-img-top banner" style="width: 100%; height: 42%; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 style="font-weight:bolder; text-align:center" class="card-title">Kick Sauber</h5>
+                        <p class="card-text">
+                            Steeped in history, Stake F1 Team Kick Sauber, formerly Sauber, is a Swiss team on the rise. Backed by title sponsor Stake and with Audi joining the ranks in 2026, they're building a powerful future. The driver line-up boasts experience with veteran Valtteri Bottas and fresh talent with Zhou Guanyu, China's first F1 racer.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://www.sauber-group.com/" target="_blank" class="btn btn-link">Visit Kick Sauber</a>
+                    </div>
+                </div>
+            </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-bg-light">
+                    <img src="https://www.the-race.com/content/images/2024/02/VF-24-highlight-3.jpg" alt="Haas banner image." class="card-img-top banner">
+                    <div class="card-body">
+                        <h5 style="font-weight:bolder; text-align:center" class="card-title">Haas</h5>
+                        <p class="card-text">
+                            The Haas F1 Team, based in Kannapolis, North Carolina, USA, is the first American-led Formula One team in over 30 years. Founded by industrialist Gene Haas, the team made its debut in the 2016 FIA Formula One World Championship. The driver lineup features experienced racer Kevin Magnussen and young talent Nico Hülkenberg.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://www.haasf1team.com/" target="_blank" class="btn btn-link">Visit Haas</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+
+            
+                
+          
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-qJK1i/GgZeIDN8HcFzGhbyw/6IzLiheFj0pE2vFfF7sR7r0JnGq7Tg3L5bJf8WN9" crossorigin="anonymous"></script>
 </body>
 </html>
