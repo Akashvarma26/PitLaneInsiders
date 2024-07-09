@@ -1,92 +1,99 @@
-# PitLane Insiders
+# Pit Lane Insiders
 
-## Overview
+Box! Box! Get Your F1 Insider Info!
 
-"PitLane Insiders" is a comprehensive platform dedicated to delivering insights and analysis on Formula 1 racing. It provides real-time updates, detailed statistics, expert commentary, and interactive visualizations, catering to both fans and professionals within the sport.
+Welcome to **Pit Lane Insiders**, a comprehensive Formula 1 (F1) website designed to engage and inform F1 enthusiasts. This project provides detailed information about F1 teams, drivers, current standings, and interactive features like a quiz and a prediction tool.
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Objectives](#objectives)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+
+## Introduction
+
+**Pit Lane Insiders** is a web application that serves as a one-stop platform for all things related to Formula 1. It provides users with up-to-date information on teams, drivers, and standings, along with interactive features such as a quiz and a race outcome prediction tool.
+
+## Objectives
+
+- Provide an engaging and informative platform for F1 fans.
+- Offer up-to-date information on F1 teams, drivers, and current standings.
+- Create an interactive quiz to test users' knowledge of F1.
+- Develop a prediction tool for users to forecast race outcomes based on various inputs.
+- Ensure a seamless and user-friendly experience across all devices.
 
 ## Features
 
-- **Real-Time Race Updates:** Live updates, lap-by-lap commentary, and race statistics.
-- **Statistical Insights:** Historical data, driver/team performance metrics, and predictive analytics.
-- **Interactive Visualizations:** Charts, graphs, and simulations to visualize race data.
-- **Community Engagement:** Forums, discussion boards, and user-generated content.
-- **Customization:** Personalized dashboards, alerts, and news feeds.
+- **Home Page:** A brief introduction to Formula 1, its history, and significance.
+- **Teams Page:** Detailed information about different F1 teams, their history, achievements, and current standings.
+- **Drivers Page:** Profiles of current drivers, including their statistics and current points.
+- **Quiz Page:** An interactive quiz to test users' knowledge about F1.
+- **Prediction Page:** A tool for users to input qualifying positions, circuit names, and driver names to predict race outcomes.
 
-## Getting Started
+## Technologies Used
 
-### Prerequisites
+- **Frontend:**
+  - HTML
+  - CSS
+  - Bootstrap
+- **Backend:**
+  - Flask (Python)
+- **Database:**
+  - Kaggle Dataset for F1 data
 
-- Node.js
-- MongoDB (or another database management system)
-- Web browser with HTML5 support
+## Installation
 
-### Installation
+1. **Clone the repository:**
 
-1. Clone the repository:
    ```bash
-   git clone https://github.com/Sreyaaas/PitLaneInsiders.git
+   git clone https://github.com/amanparasher/PitLaneInsiders.git
    cd PitLaneInsiders
    ```
 
-2. Install dependencies:
+2. **Set up a virtual environment:**
+
    ```bash
-   npm install
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
 
-3. Set up environment variables:
-   - Create a `.env` file in the root directory.
-   - Add necessary variables (e.g., database connection URI, API keys).
+3. **Install the required packages:**
 
-### Running the Application
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-npm start
-```
+4. **Run the Flask application:**
 
-The application will be accessible at `http://localhost:3000`.
+   ```bash
+   flask run
+   ```
 
-### Configuration
+5. **Access the application in your browser:**
 
-- Adjust settings in `.env` file for database connection, API keys, etc.
+   ```
+   http://127.0.0.1:5000/
+   ```
 
 ## Usage
 
-1. **Explore Races:** View upcoming races, live updates, and race archives.
-2. **Analyze Data:** Dive into driver and team statistics, historical performance metrics.
-3. **Engage with Community:** Participate in forums, discussions, and user-generated content.
-4. **Personalize Experience:** Customize dashboards, alerts, and news feeds based on preferences.
-
-## Architecture
-
-### Architecture Diagram
-
-![Architecture Diagram](URL_TO_ARCHITECTURE_DIAGRAM)
-
-### Front-End (UI) Design
-
-- Built using React.js for dynamic and responsive user interface.
-
-### Back-End (Database Table) Design
-
-- MongoDB for storing race, driver, team data, and user information.
-
-### ER Diagram and Use Case Diagram
-
-- ER Diagram illustrates relationships between entities (users, races, drivers).
-- Use Case Diagram outlines interactions (login, view race updates, analyze data).
+- Navigate to different pages to explore information about F1 teams, drivers, and current standings.
+- Participate in the quiz to test your F1 knowledge.
+- Use the prediction tool to forecast race outcomes based on your inputs.
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit pull requests.
+Contributions are welcome! If you have suggestions for improvements or new features, feel free to fork the repository and create a pull request. Please ensure your changes adhere to the project's coding standards.
 
-## Troubleshooting
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-For issues or questions, please check our [issue tracker](https://github.com/Sreyaaas/PitLaneInsiders/issues) or contact us.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-Feel free to expand each section with more details specific to your project's architecture, setup instructions, and guidelines for contributing. This README file provides a comprehensive guide for users and contributors to understand and engage with your "PitLane Insiders" project effectively.
+Enjoy exploring the world of Formula 1 with **Pit Lane Insiders**!
