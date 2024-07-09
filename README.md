@@ -1,7 +1,3 @@
-Certainly! Here's a more comprehensive README file for your GitHub repository, including details about the project, installation instructions, usage guidelines, and more:
-
----
-
 # PitLane Insiders
 
 ## Overview
