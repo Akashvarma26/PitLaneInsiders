@@ -1,0 +1,67 @@
+body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+}
+
+.driver-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.position {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+}
+
+.points {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: black;
+}
+
+.driver-info {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.driver-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.team-name {
+    font-size: 1rem;
+    color: #888;
+}
+
+.driver-img {
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.flag-img {
+    width: 30px;
+    height: auto;
+    margin-left: 10px;
+}
+
+.mb-4 {
+    margin-bottom: 20px !important;
+}
