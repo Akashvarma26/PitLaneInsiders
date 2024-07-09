@@ -1,0 +1,85 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Prediction</title>
+</head>
+<body>
+    <div class="container">
+        <h2>F1 prediction</h2>
+        <form method="post" action="{{ url_for('predict') }}">
+            <label for="qualis">Qualifying Position:</label>
+            <input type="number" name="qualis" required>
+            <br>
+            <br>
+            <br>
+            <label for="GP_name">GP_name:</label>
+            <select name="GP_name" id="GP_name">
+                <option value=0>Albert Park Grand Prix Circuit</option>
+                <option value=1>Autodromo Nazionale di Monza</option>
+                <option value=2>Autódromo Hermanos Rodríguez</option>
+                <option value=3>Autódromo José Carlos Pace</option>
+                <option value=4>Bahrain International Circuit</option>
+                <option value=5>Baku City Circuit</option>
+                <option value=6>Buddh International Circuit</option>
+                <option value=7>Circuit Gilles Villeneuve</option>
+                <option value=8>Circuit Paul Ricard</option>
+                <option value=9>Circuit de Barcelona-Catalunya</option>
+                <option value=10>Circuit de Monaco</option>
+                <option value=11>Circuit de Spa-Francorchamps</option>
+                <option value=12>Circuit of the Americas</option>
+                <option value=13>Hockenheimring</option>
+                <option value=14>Hungaroring</option>
+                <option value=15>Istanbul Park</option>
+                <option value=16>Korean International Circuit</option>
+                <option value=17>Marina Bay Street Circuit</option>
+                <option value=18>Nürburgring</option>
+                <option value=19>Red Bull Ring</option>
+                <option value=20>Sepang International Circuit</option>
+                <option value=21>Shanghai International Circuit</option>
+                <option value=22>Silverstone Circuit</option>
+                <option value=23>Sochi Autodrom</option>
+                <option value=24>Suzuka Circuit</option>
+                <option value=25>Valencia Street Circuit</option>
+                <option value=26>Yas Marina Circuit</option>
+            </select>
+            <br>
+            <br>
+            <br>
+            <label for="driver">driver:</label>
+            <select name="driver" id="driver">
+                <option value=0>Alexander Albon</option>
+                <option value=1>Antonio Giovinazzi</option>
+                <option value=2>Carlos Sainz</option>
+                <option value=3>Charles Leclerc</option>
+                <option value=4>Daniel Ricciardo</option>
+                <option value=5>Daniil Kvyat</option>
+                <option value=6>Esteban Ocon</option>
+                <option value=7>George Russell</option>
+                <option value=8>Kevin Magnussen</option>
+                <option value=9>Kimi Räikkönen</option>
+                <option value=10>Lance Stroll</option>
+                <option value=11>Lando Norris</option>
+                <option value=12>Lewis Hamilton</option>
+                <option value=13>Max Verstappen</option>
+                <option value=14>Nicholas Latifi</option>
+                <option value=15>Pierre Gasly</option>
+                <option value=16>Romain Grosjean</option>
+                <option value=17>Sebastian Vettel</option>
+                <option value=18>Sergio Pérez</option>
+                <option value=19>Valtteri Bottas</option>
+            </select>   
+            <br>
+            <br>
+            <br>
+            <button type="submit">Predict</button>
+        </form>
+        <div>
+            {{output}}
+        </div>
+    </div>
+</body>
+</html>
