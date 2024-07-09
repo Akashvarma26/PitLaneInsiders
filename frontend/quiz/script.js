@@ -141,7 +141,7 @@ submitButton.addEventListener("click", () => {
     if (score > 4) {
       resultMessage += `<h4>You are a true F1 fan!</h4>`;
     }
-    if (score < 2) {
+    if (score < 3) {
       resultMessage += `<h4>Go Watch more F1!! </h4>`; }
     resultMessage += `<button class='btn' onclick='location.reload()'>Play Again</button>`;
     scoreArea.innerHTML = resultMessage;
