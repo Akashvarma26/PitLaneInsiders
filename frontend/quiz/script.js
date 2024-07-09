@@ -39,46 +39,46 @@ const qustionDataBase = [
     option4: "Zak Brown",
     ans: "answer2",
   },
-  {
-    question: "Which circuit returned to the F1 calendar in 2020 due to the COVID-19 pandemic?",
-    option1: "Imola",
-    option2: "Sepang",
-    option3: "Istanbul",
-    option4: "Nurburgring",
-    ans: "answer1",
-  },
-  {
-    question: "Who replaced Sebastian Vettel at Ferrari in 2021?",
-    option1: "Carlos Sainz",
-    option2: "Daniel Ricciardo",
-    option3: "Sergio Perez",
-    option4: "Pierre Gasly",
-    ans: "answer1",
-  },
-  {
-    question: "What significant technical change was introduced in the 2022 season?",
-    option1: "Turbocharged engines",
-    option2: "Ground effect aerodynamics",
-    option3: "Hybrid power units",
-    option4: "DRS",
-    ans: "answer2",
-  },
-  {
-    question: "Which driver made his debut with McLaren in 2019?",
-    option1: "Lando Norris",
-    option2: "George Russell",
-    option3: "Charles Leclerc",
-    option4: "Alexander Albon",
-    ans: "answer1",
-  },
-  {
-    question: "What is the main purpose of the Drag Reduction System (DRS) in F1?",
-    option1: "Increase fuel efficiency",
-    option2: "Enhance downforce",
-    option3: "Reduce drag for overtaking",
-    option4: "Improve tire wear",
-    ans: "answer3",
-  },
+  // {
+  //   question: "Which circuit returned to the F1 calendar in 2020 due to the COVID-19 pandemic?",
+  //   option1: "Imola",
+  //   option2: "Sepang",
+  //   option3: "Istanbul",
+  //   option4: "Nurburgring",
+  //   ans: "answer1",
+  // },
+  // {
+  //   question: "Who replaced Sebastian Vettel at Ferrari in 2021?",
+  //   option1: "Carlos Sainz",
+  //   option2: "Daniel Ricciardo",
+  //   option3: "Sergio Perez",
+  //   option4: "Pierre Gasly",
+  //   ans: "answer1",
+  // },
+  // {
+  //   question: "What significant technical change was introduced in the 2022 season?",
+  //   option1: "Turbocharged engines",
+  //   option2: "Ground effect aerodynamics",
+  //   option3: "Hybrid power units",
+  //   option4: "DRS",
+  //   ans: "answer2",
+  // },
+  // {
+  //   question: "Which driver made his debut with McLaren in 2019?",
+  //   option1: "Lando Norris",
+  //   option2: "George Russell",
+  //   option3: "Charles Leclerc",
+  //   option4: "Alexander Albon",
+  //   ans: "answer1",
+  // },
+  // {
+  //   question: "What is the main purpose of the Drag Reduction System (DRS) in F1?",
+  //   option1: "Increase fuel efficiency",
+  //   option2: "Enhance downforce",
+  //   option3: "Reduce drag for overtaking",
+  //   option4: "Improve tire wear",
+  //   ans: "answer3",
+  // },
 ];
 
 // getting referrence
@@ -138,10 +138,10 @@ submitButton.addEventListener("click", () => {
   } else {
     scoreArea.style.display = "block";
     let resultMessage = `<h3>Your score is ${score} / ${qustionDataBase.length}</h3>`;
-    if (score > 9) {
+    if (score > 4) {
       resultMessage += `<h4>You are a true F1 fan!</h4>`;
     }
-    if (score < 6) {
+    if (score < 2) {
       resultMessage += `<h4>Go Watch more F1!! </h4>`; }
     resultMessage += `<button class='btn' onclick='location.reload()'>Play Again</button>`;
     scoreArea.innerHTML = resultMessage;
