@@ -1,3 +1,19 @@
-env/
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
 
-frontend/css/scss/bootstrap/
+# Virtual environments
+.venv
+.env
+mcp_server/cache
+chat/
+cache
+login.db
+banned_words.txt
+logs
+client.py
+src/Frontend/css/scss/bootstrap/

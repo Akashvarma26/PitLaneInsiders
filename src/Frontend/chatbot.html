@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PitLane Insiders</title>
+  <link rel="icon" href="assets/images/pitlane_logo.png" type="image/png"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    * {
+      font-family: "Poppins", sans-serif;
+      font-weight: 100;
+      font-style: bold;
+    }
+
+    input::placeholder {
+      color: rgb(201, 180, 180);
+      opacity: 1;
+    }
+
+    .AI-generatedcontent {
+      color: rgb(201, 180, 180);
+      margin: 50px 150px;
+      white-space: pre-wrap;
+    }
+
+    .send-btn {
+      color: rgb(201, 180, 180);
+      background-color: #444;
+      height: 46px;
+      border-radius: 6px;
+      width: 51px;
+      border: none;
+    }
+
+    .send-btn:hover {
+      background-color: #666;
+    }
+
+    #loading-dots {
+      display: none;
+      color: gray;
+      font-size: 18px;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body style="background-color: #000001">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container-fluid">
+      <img src="assets/images/pitlane_logo.png" alt="PitLane Insiders" style="max-height:50px; padding-left:17px;">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="teams.html">Teams</a></li>
+          <li class="nav-item"><a class="nav-link" href="drivers.html">Drivers</a></li>
+          <li class="nav-item"><a class="nav-link" target="_blank" href="quiz.html">F1 Quiz</a></li>
+          <li class="nav-item"><a class="nav-link active" href="chatbot.html">Chatbot</a></li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank"
+               href="https://discord.com/oauth2/authorize?client_id=1383579368336396349&permissions=563276639759424&integration_type=0&scope=bot">
+               Discord bot</a>
+          </li>
+          <li class="nav-item">
+            <button onclick="logout()" class="btn btn-sm btn-outline-danger ms-3">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Logo -->
+  <div class="container mt-5 text-center">
+    <img src="assets/images/pitlane_logo.png" alt="PitLane Insiders" style="max-height:310px;">
+    <p style="color:gray;"><small>Built with Agno agentic AI framework and driven by OpenAI's GPT models.</small></p>
+  </div>
+<p style="color:gray; margin-left: 100px;"><small>Welcome, <span id="username-display"></span></small></p>
+  <!-- Session ID -->
+  <div class="container mt-4">
+    <label for="sessionid" style="color:rgb(201, 180, 180); display: block;">Session ID:</label>
+    <input type="text" id="sessionid" placeholder="Session ID"
+           style="color:rgb(201, 180, 180); background-color:#444; width: 300px; height: 45px; border-radius: 6px;" required>
+  </div>
+
+  <!-- AI Response -->
+  <div class="AI-generatedcontent" id="ai-response"></div>
+  <div id="loading-dots"><em>Thinking<span id="dots"></span></em></div>
+
+  <!-- Ask + Footer -->
+  <footer class="py-5 bg-black text-white">
+    <div class="container text-center">
+      <div class="mt-5">
+        <label for="query" style="color:rgb(201, 180, 180); display: block;">Ask:</label>
+        <input type="text" id="query"
+          style="color:rgb(201, 180, 180); background-color:#444; width: 1150px; height: 45px; border-radius: 6px;" required>
+        <button type="button" class="send-btn" id="aisend-btn">&#62;</button>
+      </div>
+      <br><br>
+      <p style="color:gray"><small>&#169 2025 PitLane Insiders. All rights reserved.</small></p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const loadingDots = document.getElementById("loading-dots");
+    const dotsSpan = document.getElementById("dots");
+    const queryInput = document.getElementById("query");
+    const sessionInput = document.getElementById("sessionid");
+    const sendBtn = document.getElementById("aisend-btn");
+    const responseBox = document.getElementById("ai-response");
+    const username = localStorage.getItem("username");
+    if (username) {
+      document.getElementById("username-display").textContent = username;
+    }
+    let dotsInterval;
+
+    function startLoading() {
+      loadingDots.style.display = "block";
+      dotsSpan.textContent = "";
+      let dotCount = 0;
+      dotsInterval = setInterval(() => {
+        dotCount = (dotCount + 1) % 4;
+        dotsSpan.textContent = ".".repeat(dotCount);
+      }, 500);
+    }
+
+    function stopLoading() {
+      clearInterval(dotsInterval);
+      loadingDots.style.display = "none";
+    }
+
+    queryInput.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendBtn.click();
+      }
+    });
+
+    sendBtn.addEventListener("click", async function () {
+      const query = queryInput.value.trim();
+      const sessionId = sessionInput.value.trim();
+
+      if (!query || !sessionId) {
+        alert("Please enter both a session ID and a query.");
+        return;
+      }
+
+      responseBox.innerHTML = "";
+      sendBtn.disabled = true;
+      startLoading();
+
+      try {
+        const response = await fetch("http://localhost:8000/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query, session_id: sessionId }),
+        });
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        responseBox.textContent = "";
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const chunk = decoder.decode(value, { stream: true });
+          responseBox.textContent += chunk;
+          responseBox.scrollTop = responseBox.scrollHeight;
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        responseBox.textContent = "⚠️ Failed to fetch AI response.";
+      } finally {
+        stopLoading();
+        sendBtn.disabled = false;
+      }
+    });
+
+    if (!localStorage.getItem("isLoggedIn")) {
+      alert("Please log in to access the chatbot.");
+      window.location.href = "login.html";
+    }
+      function logout() {
+    // Clear login session from localStorage
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("username");
+
+    // Optionally show feedback
+    alert("You have been logged out.");
+
+    // Redirect to login page
+    window.location.href = "login.html";
+  }
+  </script>
+
+</body>
+</html>

@@ -1,8 +1,8 @@
-# Pit Lane Insiders
+# PitLane Insiders
 
 Box! Box! Get Your F1 Insider Info!
 
-Welcome to **Pit Lane Insiders**, a comprehensive Formula 1 (F1) website designed to engage and inform F1 enthusiasts. This project provides detailed information about F1 teams, drivers, current standings, and interactive features like a quiz and a prediction tool.
+Welcome to **PitLane Insiders**, a comprehensive Formula 1 (F1) website designed to engage and inform F1 enthusiasts. This project provides detailed information about F1 teams, drivers, current standings, and interactive features like a quiz and a prediction tool.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ Welcome to **Pit Lane Insiders**, a comprehensive Formula 1 (F1) website designe
 
 ## Introduction
 
-**Pit Lane Insiders** is a web application that serves as a one-stop platform for all things related to Formula 1. It provides users with up-to-date information on teams, drivers, and standings, along with interactive features such as a quiz and a race outcome prediction tool.
+**PitLane Insiders** is a web application that serves as a one-stop platform for all things related to Formula 1. It provides users with up-to-date information on teams, drivers, and standings, along with interactive features such as a quiz and a race outcome prediction tool.
 
 ## Objectives
 
@@ -96,4 +96,4 @@ Contributions are welcome! If you have suggestions for improvements or new featu
 5. Open a Pull Request
 
 
-Enjoy exploring the world of Formula 1 with **Pit Lane Insiders**!
+Enjoy exploring the world of Formula 1 with **PitLane Insiders**!
