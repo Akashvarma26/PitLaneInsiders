@@ -4,8 +4,6 @@ from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import  CORSMiddleware
 from pydantic import BaseModel
 import sqlite3 as sql
-import asyncio
-import anyio
 from utils.agent_workflow import run_agent_workflow  # Formula One Agentic AI system
 
 #Login id with username:"test1", email:"test1@gmail.com", password:"test1123"
@@ -38,7 +36,7 @@ origins = [
 app = FastAPI(
     title="Pitlane Insiders",
     description="Website for Formula One fans!!!",
-    version="0.1.3"
+    version="0.2.0"
 )
 
 # Middleware of the backend to allow all origins
@@ -49,11 +47,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Home route for directing to login page (Working)
-@app.get("/")
-def get_home():
-    return{"message":"F1 App","Status":"Ok"}
 
 # To add the new user to the db
 @app.post("/signup")
@@ -69,7 +62,7 @@ def add_user(user_db: USER_DB):
         except sql.IntegrityError:
             return "Username or Email already exists! Choose a another one!!!"
 
-# To login the existing user and allow acess to the services
+# To login the existing user and allow acess to the chatbot page
 @app.post("/login")
 def verify_login(user_db:USER_DB):
     with get_db_connection() as conn:

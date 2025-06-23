@@ -1141,6 +1141,7 @@ dependencies = [
     { name = "polars" },
     { name = "pycountry" },
     { name = "sqlalchemy" },
+    { name = "uvicorn" },
     { name = "wikipedia" },
 ]
 
@@ -1159,6 +1160,7 @@ requires-dist = [
     { name = "polars", specifier = ">=1.30.0" },
     { name = "pycountry", specifier = ">=24.6.1" },
     { name = "sqlalchemy", specifier = ">=2.0.41" },
+    { name = "uvicorn", specifier = ">=0.34.3" },
     { name = "wikipedia", specifier = ">=1.4.0" },
 ]
 

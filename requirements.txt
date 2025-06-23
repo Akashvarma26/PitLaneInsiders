@@ -12,3 +12,4 @@ pycountry == 24.6.1
 sqlalchemy == 2.0.41
 wikipedia == 1.4.0
 discord-py == 2.5.2
+uvicorn == 0.34.3
