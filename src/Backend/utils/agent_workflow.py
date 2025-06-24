@@ -1,0 +1,78 @@
+# Importing required libraries and setting up API keys
+from dotenv import load_dotenv
+load_dotenv()
+import os
+from agno.agent import Agent
+from agno.team import Team
+from agno.models.openai import OpenAIChat
+from agno.tools.googlesearch import GoogleSearchTools
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.tools.wikipedia import WikipediaTools
+from agno.tools.mcp import MCPTools
+from agno.storage.sqlite import SqliteStorage
+
+# Custom f1 mcp server url
+server_url = "http://localhost:8001/mcp"
+
+# Chat history storage
+chat_storage = SqliteStorage(
+    table_name="agent_sessions",
+    db_file="utils/chat/msg.db"
+)
+
+# Formula One Agentic AI system using streamable http protocol
+async def run_agent_workflow(message: str,session_id=str):
+    async with MCPTools(
+        url=server_url,
+        transport="streamable-http",
+        timeout_seconds=60
+    ) as mcp_tools:
+
+        # MCP Agent using mcp server
+        mcp_agent = Agent(
+            name="Race Data Agent",
+            description="You are expert in analyzing Formula 1 telemetry, lap data, pit stops, weather, Position changes during race and sessions data using internal race tools. Give numerical data and analysis in detail.",
+            model=OpenAIChat(id="gpt-4.1-mini-2025-04-14", api_key=os.getenv("OPENAI_EMD_KEY")),
+            tools=[mcp_tools],
+            show_tool_calls=True,
+            markdown=True,
+        )
+
+        # Web search agent for searching internet for current real time data
+        web_search_agent = Agent(
+            name="F1 Search Agent",
+            description="Search expert for Formula 1-related information. Uses Google, DuckDuckGo, or Wikipedia depending on the query. Best suited for historical data, team bios, recent news or any internet based data",
+            tools=[GoogleSearchTools(), DuckDuckGoTools(), WikipediaTools()],
+            model=OpenAIChat(id="gpt-4.1-mini-2025-04-14", api_key=os.getenv("OPENAI_EMD_KEY")),
+            show_tool_calls=True,
+            markdown=True
+        )
+
+        # Agentic Team for routing query to Web search agent or MCP agent for better efficient responses
+        agent_team = Team(
+            session_id=session_id,
+            name="Formula One Agent",
+            mode="route",
+            description="You are the Formula 1 AI Assistant. Route the user's request to the best expert agent (race data or web info). Provide detailed, clear answers with explanations and numbers if applicable.",
+            model=OpenAIChat(id="o4-mini-2025-04-16", api_key=os.getenv("OPENAI_EMD_KEY")),
+            members=[web_search_agent, mcp_agent],
+            show_tool_calls=True,
+            markdown=True,
+            show_members_responses=True,
+            add_history_to_messages=True,
+            storage=chat_storage
+        )
+
+        # Getting the response from the agent team
+        run_response = await agent_team.arun(message, stream=True)
+ 
+        # Extracting the content and yielding it
+        if hasattr(run_response, "__aiter__"):
+            async for chunk in run_response:
+                if chunk and getattr(chunk, "content", None):
+                    yield chunk.content
+
+        else:
+            content = getattr(run_response, "content", None)
+            if content:
+                yield content
