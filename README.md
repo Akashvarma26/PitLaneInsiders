@@ -6,13 +6,13 @@ Welcome to **PitLane Insiders**, a comprehensive Formula 1 (F1) website designed
 
 ## 📖 Table of Contents
 
-- [Introduction](#introduction)
-- [Objectives](#objectives)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
+- [Introduction](#-introduction)
+- [Objectives](#-objectives)
+- [Features](#-features)
+- [Technologies Used](#-technologies-used)
+- [Project Structure](#-project-structure)
+- [Installation](#-installation)
+- [Usage](#-usage)
 
 ## 👋 Introduction
 
@@ -65,69 +65,68 @@ PitLaneInsiders/
 ├── uv.lock
 ├── README.md
 │
-├── src/
-│   ├── Frontend/
-│   │   ├── chatbot.html
-│   │   ├── drivers.html
-│   │   ├── home.html
-│   │   ├── login.html
-│   │   ├── quiz.html
-│   │   ├── signup.html
-│   │   ├── teams.html
-│   │   │
-│   │   ├── assets/
-│   │   │   ├── images/
-│   │   │   │   └── pitlane_logo.png
-│   │   │   └── videos/
-│   │   │       └── vid_f1_2.mp4
-│   │   │
-│   │   ├── css/
+├──docs/
+│   ├── chatbot.html
+│   ├── drivers.html
+│   ├── index.html
+│   ├── login.html
+│   ├── quiz.html
+│   ├── signup.html
+│   ├── teams.html
+│   │
+│   ├── assets/
+│   │   ├── images/
+│   │   │   └── pitlane_logo.png
+│   │   └── videos/
+│   │       └── vid_f1_2.mp4
+│   │
+│   ├── css/
+│   │   ├── bootstrap/
+│   │   ├── fonts/
+│   │   ├── scss/
 │   │   │   ├── bootstrap/
-│   │   │   ├── fonts/
-│   │   │   ├── scss/
-│   │   │   │   ├── bootstrap/
-│   │   │   │   └── style.scss
-│   │   │   ├── style.css
-│   │   │   ├── gen_style.css
-│   │   │   ├── bootstrap.min.css
-│   │   │   ├── bootstrap.min.css.map
-│   │   │   ├── style_drivers
-│   │   │   └── style_quiz
-│   │   │
-│   │   └── js/
-│   │       ├── bootstrap.min.js
-│   │       ├── jquery-3.3.1.min.js
-│   │       └── popper.min.js
-│
-│   ├── Backend/
-│   │   ├── app.py
-│   │   ├── client.py
-│   │   │
-│   │   ├── mcp_server/
-│   │   │   ├── cache/
-│   │   │   ├── __pycache__/
-│   │   │   ├── mcp_config.json
-│   │   │   └── mcp_f1.py
-│   │   │
-│   │   ├── utils/
-│   │   │   ├── __init__.py
-│   │   │   ├── agent_workflow.py
-│   │   │   │
-│   │   │   ├── chat/
-│   │   │   │   └── msg.db
-│   │   │   │
-│   │   │   └── user_db/
-│   │   │       ├── dbmaker.py
-│   │   │       ├── login.db
-│   │   │       └── valueinsert.py
-│
-│   └── Discord_bot/
-│       ├── __pycache__/
-│       ├── logs/
-│       ├── .env
-│       ├── banned_words.txt
-│       ├── keep_alive.py
-│       └── main.py
+│   │   │   └── style.scss
+│   │   ├── style.css
+│   │   ├── gen_style.css
+│   │   ├── bootstrap.min.css
+│   │   ├── bootstrap.min.css.map
+│   │   ├── style_drivers/
+│   │   └── style_quiz/
+│   │
+│   └── js/
+│       ├── bootstrap.min.js
+│       ├── jquery-3.3.1.min.js
+│       └── popper.min.js
+│   
+├── Backend/
+│   ├── app.py
+│   ├── client.py
+│   │
+│   ├── mcp_server/
+│   │   ├── cache/
+│   │   ├── __pycache__/
+│   │   ├── mcp_config.json
+│   │   └── mcp_f1.py
+│   │
+│   └── utils/
+│       ├── __init__.py
+│       ├── agent_workflow.py
+│       │
+│       ├── chat/
+│       │   └── msg.db
+│       │
+│       └── user_db/
+│           ├── dbmaker.py
+│           ├── login.db
+│           └── valueinsert.py
+|   
+└── Discord_bot/
+    ├── __pycache__/
+    ├── logs/
+    ├── .env
+    ├── banned_words.txt
+    ├── keep_alive.py
+    └── main.py
 
 ```
 
@@ -176,7 +175,7 @@ PitLaneInsiders/
 5. **Access the application in your browser:**
 
    ```
-   http://localhost:5500/src/frontend/home.html
+   http://localhost:5500/docs/index.html
    ```
 
 ## 👍 Usage
