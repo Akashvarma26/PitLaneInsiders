@@ -64,7 +64,7 @@ PitLaneInsiders/
 ├── requirements.txt
 ├── uv.lock
 ├── README.md
-│
+├── app.py
 ├──docs/
 │   ├── chatbot.html
 │   ├── drivers.html
@@ -94,12 +94,8 @@ PitLaneInsiders/
 │   │   └── style_quiz/
 │   │
 │   └── js/
-│       ├── bootstrap.min.js
-│       ├── jquery-3.3.1.min.js
-│       └── popper.min.js
 │   
 ├── Backend/
-│   ├── app.py
 │   ├── client.py
 │   │
 │   ├── mcp_server/
@@ -111,7 +107,8 @@ PitLaneInsiders/
 │   └── utils/
 │       ├── __init__.py
 │       ├── agent_workflow.py
-│       │
+│       ├── news.py
+|       |
 │       ├── chat/
 │       │   └── msg.db
 │       │
@@ -127,7 +124,6 @@ PitLaneInsiders/
     ├── banned_words.txt
     ├── keep_alive.py
     └── main.py
-
 ```
 
 ## 📋 Installation
@@ -180,7 +176,7 @@ PitLaneInsiders/
 
 ## 👍 Usage
 
-- Navigate to different pages to explore information about F1 teams, drivers, and current standings, etc.
+- Navigate to different pages to explore information about F1 teams, drivers, and current news, etc.
 - Participate in the quiz to test your F1 knowledge.
 - Use the chatbot to access telemetry data, weather updates, and pit stop information. You can also use it to search for the latest Formula 1 news or explore legendary drivers from F1 history.
 - Invite discord bot to your discord server.

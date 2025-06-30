@@ -17,7 +17,7 @@ server_url = "http://localhost:8001/mcp"
 # Chat history storage
 chat_storage = SqliteStorage(
     table_name="agent_sessions",
-    db_file="utils/chat/msg.db"
+    db_file="Backend/utils/chat/msg.db"
 )
 
 # Formula One Agentic AI system using streamable http protocol
@@ -31,7 +31,9 @@ async def run_agent_workflow(message: str,session_id=str):
         # MCP Agent using mcp server
         mcp_agent = Agent(
             name="Race Data Agent",
-            description="You are expert in analyzing Formula 1 telemetry, lap data, pit stops, weather, Position changes during race and sessions data using internal race tools. Give numerical data and analysis in detail.",
+            instructions=["You are expert in analyzing Formula 1 telemetry, lap data, pit stops, weather, Position changes during race and sessions data using internal tools. "
+                          "Prioritize returning structured numerical data (e.g., lap times, pit durations, position changes), followed by a clear analysis. "
+                          "Explain all numbers in context, and only use internal tools — do not speculate or fabricate values."],
             model=OpenAIChat(id="gpt-4.1-mini-2025-04-14", api_key=os.getenv("OPENAI_EMD_KEY")),
             tools=[mcp_tools],
             show_tool_calls=True,
@@ -41,7 +43,8 @@ async def run_agent_workflow(message: str,session_id=str):
         # Web search agent for searching internet for current real time data
         web_search_agent = Agent(
             name="F1 Search Agent",
-            description="Search expert for Formula 1-related information. Uses Google, DuckDuckGo, or Wikipedia depending on the query. Best suited for historical data, team bios, recent news or any internet based data",
+            instructions=["Search expert for Formula 1-related information. Use the most relevant tool (Google, DuckDuckGo, or Wikipedia) depending on the query. "
+                          "Include the source URL in your answer, summarize key points, and avoid hallucinating when unsure."],
             tools=[GoogleSearchTools(), DuckDuckGoTools(), WikipediaTools()],
             model=OpenAIChat(id="gpt-4.1-mini-2025-04-14", api_key=os.getenv("OPENAI_EMD_KEY")),
             show_tool_calls=True,
@@ -53,7 +56,9 @@ async def run_agent_workflow(message: str,session_id=str):
             session_id=session_id,
             name="Formula One Agent",
             mode="route",
-            description="You are the Formula 1 AI Assistant. Route the user's request to the best expert agent (race data or web info). Provide detailed, clear answers with explanations and numbers if applicable.",
+            instructions=["You are the 'PitLane Insiders chatbot' a Formula 1 QA AI Assistant which answers to Formula one questions only. "
+                          "Route the user's request to the best expert agent (Race Data Agent or F1 Search Agent). "
+                          "Provide detailed, clear answers with explanations and numbers if applicable. "],
             model=OpenAIChat(id="o4-mini-2025-04-16", api_key=os.getenv("OPENAI_EMD_KEY")),
             members=[web_search_agent, mcp_agent],
             show_tool_calls=True,

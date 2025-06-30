@@ -4,10 +4,8 @@ from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import  CORSMiddleware
 from pydantic import BaseModel
 import sqlite3 as sql
-from utils.agent_workflow import run_agent_workflow  # Formula One Agentic AI system
-
-#Login id with username:"test1", email:"test1@gmail.com", password:"test1123"
-#Login id with username:"test0", email:"test0@gmail.com", password:"test0123"
+from Backend.utils.agent_workflow import run_agent_workflow  # Multi - Agentic AI system (PitLane Insider Chatbot)
+from Backend.utils.news import get_all_f1_articles
 
 # Pydantic classes for better data validation and ease to requests and responses
 class LLM_Input(BaseModel):
@@ -21,23 +19,19 @@ class USER_DB(BaseModel):
 
 # Database utility function
 def get_db_connection():
-    return sql.connect("utils/user_db/login.db")
+    return sql.connect("Backend/utils/user_db/login.db")
 
 origins = [
-    # frontends and other urls here (Working)
-    "http://localhost:8001/mcp",
-    "http://localhost:5500/",
+    # frontends urls here
     "http://localhost:5500",
-    "http://127.0.0.1:5500/",
     "http://127.0.0.1:5500",
-    "http://Akashvarma26.github.io/PitLaneInsiders",
 ]
 
 # FastAPI app initialization
 app = FastAPI(
     title="Pitlane Insiders",
-    description="Website for Formula One fans!!!",
-    version="0.2.0"
+    description="Website for Formula One community!!!",
+    version="0.3.1"
 )
 
 # Middleware of the backend to allow all origins
@@ -83,15 +77,25 @@ def verify_login(user_db:USER_DB):
 @app.post("/chat")
 async def chat_llm(llm_input: LLM_Input):
     async def stream_response():
+        yielded = False
         try:
-            # Call your correct async generator
             async for chunk in run_agent_workflow(
                 message=llm_input.query,
                 session_id=llm_input.session_id
             ):
-                yield chunk
+                if chunk:
+                    yield chunk
+                    yielded = True
         except Exception as e:
-            print("Error in streaming:", e)
-            yield "⚠️ Error while streaming response."
+            print("❌ Error during chat stream:", str(e))
+            yield "⚠️ Error while generating response from AI agent."
+            return
+
+        if not yielded:
+            yield "⚠️ No response from PitLane Insiders bot."
 
     return StreamingResponse(stream_response(), media_type="text/plain")
+
+@app.get("/news")
+def get_news():
+    return get_all_f1_articles()
