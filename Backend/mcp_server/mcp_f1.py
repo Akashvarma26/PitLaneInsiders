@@ -5,12 +5,11 @@ import fastf1
 import os
 
 # Enabling caching to improve response times and reduce latency
-cache_path = "cache"
+cache_path = "Backend/mcp_server/cache"
 os.makedirs(cache_path, exist_ok=True)
 fastf1.Cache.enable_cache(cache_path)
 
-# Server initializing in 8001 port
-server = FastMCP("Formula One Data Engineer",host="127.0.0.1",port=8001)
+server = FastMCP("Formula One Data Engineer")
 
 # Driver's Telemetry Data mcp tool
 @server.tool()
@@ -155,7 +154,3 @@ def get_position_changes(year: int, grand_prix: str, session_type: str) -> DataF
         index="LapNumber", columns="Driver", values="Position"
     ).sort_index().astype("Int64")
     return DataFrame(df_pandas.reset_index())
-
-# To run server in the streamable http transport protocol
-if __name__=="__main__":
-    server.run(transport="streamable-http")

@@ -4,8 +4,21 @@ from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import  CORSMiddleware
 from pydantic import BaseModel
 import sqlite3 as sql
+import os
+import contextlib
 from Backend.utils.agent_workflow import run_agent_workflow  # Multi - Agentic AI system (PitLane Insider Chatbot)
 from Backend.utils.news import get_all_f1_articles
+from Backend.mcp_server.mcp_f1 import server as mcp_server
+
+# Backend port
+PORT=os.environ.get("PORT",8000)
+
+# Lifespan for connecting mcp server to FastAPI
+@contextlib.asynccontextmanager
+async def lifespan_mcp(app:FastAPI):
+    async with contextlib.AsyncExitStack() as stack:
+        await stack.enter_async_context(mcp_server.session_manager.run())
+        yield
 
 # Pydantic classes for better data validation and ease to requests and responses
 class LLM_Input(BaseModel):
@@ -31,8 +44,11 @@ origins = [
 app = FastAPI(
     title="Pitlane Insiders",
     description="Website for Formula One community!!!",
-    version="0.3.1"
+    version="0.5.0",
+    lifespan=lifespan_mcp
 )
+
+app.mount("/agentmcp",mcp_server.streamable_http_app())
 
 # Middleware of the backend to allow all origins
 app.add_middleware(
@@ -42,6 +58,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# To display real time news data in the frontend
+@app.get("/news")
+def get_news():
+    return get_all_f1_articles()
 
 # To add the new user to the db
 @app.post("/signup")
@@ -96,6 +117,6 @@ async def chat_llm(llm_input: LLM_Input):
 
     return StreamingResponse(stream_response(), media_type="text/plain")
 
-@app.get("/news")
-def get_news():
-    return get_all_f1_articles()
+if __name__=="__main__":
+    import uvicorn
+    uvicorn.run(app,host="0.0.0.0",port=PORT)
