@@ -12,7 +12,6 @@ wheels/
 mcp_server/cache
 chat/
 cache
-login.db
 banned_words.txt
 logs
 client.py
