@@ -12,7 +12,7 @@ from agno.tools.mcp import MCPTools
 from agno.storage.sqlite import SqliteStorage
 
 # Custom f1 mcp server url
-server_url = "http://localhost:8000/agentmcp/mcp"
+server_url = "https://pitlaneinsiders-backend.onrender.com/agentmcp/mcp"
 
 # Chat history storage
 chat_storage = SqliteStorage(
