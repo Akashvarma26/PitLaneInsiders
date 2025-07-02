@@ -38,8 +38,8 @@ origins = [
     # frontends urls here
     "http://localhost:5500",
     "http://127.0.0.1:5500",
-    "https://akashvarma26.github.io"
-    "https://www.pitlaneinsiders.site"
+    "https://www.pitlaneinsiders.site",
+    "https://pitlaneinsiders.site"
 ]
 
 # FastAPI app initialization
