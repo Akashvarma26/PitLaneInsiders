@@ -8,6 +8,7 @@ import os
 import contextlib
 from Backend.utils.agent_workflow import run_agent_workflow  # Multi - Agentic AI system (PitLane Insider Chatbot)
 from Backend.utils.news import get_all_f1_articles
+from Backend.utils.chat_history import get_chat_history_df,chat_df_to_string
 from Backend.mcp_server.mcp_f1 import server as mcp_server
 
 # Backend port
@@ -23,6 +24,9 @@ async def lifespan_mcp(app:FastAPI):
 # Pydantic classes for better data validation and ease to requests and responses
 class LLM_Input(BaseModel):
     query:str
+    session_id:str
+
+class CHAT_HISTORY(BaseModel):
     session_id:str
 
 class USER_DB(BaseModel):
@@ -46,7 +50,7 @@ origins = [
 app = FastAPI(
     title="Pitlane Insiders",
     description="Website for Formula One community!!!",
-    version="0.5.0",
+    version="0.7.0",
     lifespan=lifespan_mcp
 )
 
@@ -101,6 +105,14 @@ def verify_login(user_db:USER_DB):
             raise HTTPException(status_code=401, detail="Incorrect password")
         
         return {"message": f"Login successful. Welcome, {user_db.username}!"}
+
+@app.post("/chathistory")
+def chat_history(session: CHAT_HISTORY):
+    session_id=session.session_id
+    df=get_chat_history_df(session_id=session_id)
+    history=chat_df_to_string(df)
+    chat_html = history.replace("\n", "<br>")
+    return chat_html
 
 # To chat and conversate with Formula One Agentic AI system
 @app.post("/chat")
