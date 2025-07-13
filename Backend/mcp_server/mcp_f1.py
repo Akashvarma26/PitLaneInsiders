@@ -5,19 +5,26 @@ import fastf1
 import os
 
 # Enabling caching to improve response times and reduce latency
-cache_path = "cache"
+cache_path = "Backend/mcp_server/cache"
 os.makedirs(cache_path, exist_ok=True)
 fastf1.Cache.enable_cache(cache_path)
 
-# Server initializing in 8001 port
-server = FastMCP("Formula One Data Engineer",host="127.0.0.1",port=8001)
+server = FastMCP("Formula One Data Engineer")
 
 # Driver's Telemetry Data mcp tool
 @server.tool()
-def get_driver_telemetry(year: int, grand_prix: str, session_type: str, driver_code: str):
+def get_driver_telemetry(year: int, grand_prix: str, session_type: str, driver_code: str) -> DataFrame:
     """
-    Get telemetry data for a driver's fastest lap in a session.
-    Returns a list of telemetry points including speed, throttle, Gears, brake, rpm, drs, and distance.
+    Fetches telemetry data for a driver's fastest lap in a session.
+
+    Args:
+        year (int): F1 season year,
+        grand_prix (str): Name of the Grand Prix (e.g., 'Monza'),
+        session_type (str): Type of session ('FP1', 'Q', 'R', etc.),
+        driver_code (str): 3-letter driver code (e.g., 'VER')
+
+    Returns:
+        DataFrame: Telemetry data including speed, throttle, brake, gear, rpm, drs, and distance per point.
     """
     session = fastf1.get_session(year, grand_prix, session_type)
     session.load()
@@ -29,8 +36,16 @@ def get_driver_telemetry(year: int, grand_prix: str, session_type: str, driver_c
 @server.tool()
 def get_driver_lap_data(year: int, grand_prix: str, session_type: str, driver_code: str) -> DataFrame:
     """
-    Get lap-by-lap performance data for a specific driver.
-    Includes lap times, sector times, tyre compounds, and stint info.
+    Retrieves lap-by-lap performance data for a specific driver.
+
+    Args:
+        year (int): F1 season year,
+        grand_prix (str): Name of the Grand Prix,
+        session_type (str): Type of session ('FP2', 'Q', 'R', etc.),
+        driver_code (str): 3-letter driver code
+
+    Returns:
+        DataFrame: Quick laps with lap times, sector times, tyre compound, and stint information.
     """
     session = fastf1.get_session(year, grand_prix, session_type)
     session.load()
@@ -41,8 +56,15 @@ def get_driver_lap_data(year: int, grand_prix: str, session_type: str, driver_co
 @server.tool()
 def get_pit_stop_data(year: int, grand_prix: str, session_type: str) -> DataFrame:
     """
-    Get pit stop data for all drivers in a session.
-    Returns lap number, pit out time, compound, and stint.
+    Returns pit stop information for all drivers in a session.
+
+    Args:
+        year (int): F1 season year,
+        grand_prix (str): Name of the Grand Prix,
+        session_type (str): Type of session
+
+    Returns:
+        DataFrame: Pit stop details including driver, lap number, pit out time, compound used, and stint number.
     """
     session = fastf1.get_session(year, grand_prix, session_type)
     session.load()
@@ -54,8 +76,16 @@ def get_pit_stop_data(year: int, grand_prix: str, session_type: str) -> DataFram
 @server.tool()
 def get_pit_stints(year: int, grand_prix: str, session_type: str, driver_code: str) -> DataFrame:
     """
-    Get pit stint summary for a specific driver.
-    Includes compound, start lap, end lap, and lap count.
+    Provides a summary of a driver's tyre stints during a session.
+
+    Args:
+        year (int): F1 season year,
+        grand_prix (str): Name of the Grand Prix,
+        session_type (str): Type of session,
+        driver_code (str): 3-letter driver code
+
+    Returns:
+        DataFrame: Stint information including compound, start lap, end lap, and total laps in each stint.
     """
     session = fastf1.get_session(year, grand_prix, session_type)
     session.load()
@@ -71,8 +101,15 @@ def get_pit_stints(year: int, grand_prix: str, session_type: str, driver_code: s
 @server.tool()
 def get_session_info(year: int, grand_prix: str, session_type: str) -> dict:
     """
-    Get a brief information of the session metadata.
-    Includes event name, location, all sessions and dates.
+    Returns general metadata about the session.
+
+    Args:
+        year (int): F1 season year,
+        grand_prix (str): Name of the Grand Prix,
+        session_type (str): Type of session
+
+    Returns:
+        dict: Metadata including event name, location, session dates, and other session-level information.
     """
     session = fastf1.get_session(year, grand_prix, session_type)
     session.load()
@@ -82,9 +119,16 @@ def get_session_info(year: int, grand_prix: str, session_type: str) -> dict:
 @server.tool()
 def weather_data(year: int, grand_prix: str, session_type: str) -> DataFrame:
     """
-    Get a brief weather data of the session.
-    Includes most of weather parameters related to rain, wind, temperatures, pressure, etc.
-    """    
+    Returns weather conditions recorded during the session.
+
+    Args:
+        year (int): F1 season year,
+        grand_prix (str): Name of the Grand Prix,
+        session_type (str): Type of session
+
+    Returns:
+        DataFrame: Weather data with parameters like temperature, humidity, rain, wind, pressure, and more.
+    """   
     session = fastf1.get_session(year, grand_prix, session_type)
     session.load()
     return DataFrame(session.weather_data)
@@ -93,8 +137,15 @@ def weather_data(year: int, grand_prix: str, session_type: str) -> DataFrame:
 @server.tool()
 def get_position_changes(year: int, grand_prix: str, session_type: str) -> DataFrame:
     """
-    Get lap-by-lap driver positions as a Polars DataFrame.
-    Rows = laps, Columns = drivers, Values = positions
+    Returns lap-by-lap position changes for all drivers in the session.
+
+    Args:
+        year (int): F1 season year,
+        grand_prix (str): Name of the Grand Prix,
+        session_type (str): Type of session
+
+    Returns:
+        DataFrame: Table showing driver positions per lap (rows = laps, columns = drivers, values = positions).
     """
     session = fastf1.get_session(year, grand_prix, session_type)
     session.load()
@@ -103,7 +154,3 @@ def get_position_changes(year: int, grand_prix: str, session_type: str) -> DataF
         index="LapNumber", columns="Driver", values="Position"
     ).sort_index().astype("Int64")
     return DataFrame(df_pandas.reset_index())
-
-# To run server in the streamable http transport protocol
-if __name__=="__main__":
-    server.run(transport="streamable-http")

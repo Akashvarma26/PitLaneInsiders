@@ -19,6 +19,9 @@
 </head>
 <body class="preload" style="background-color: black;">
   <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+    <div>
+      <img src="assets/images/pitlane_logo.png" style="width: 200px;"> 
+    </div>
     <h2 class="mb-4" style="color: gray;">Create Your PitLane Insiders Account</h2>
     <form id="signin-form" class="w-50">
       <div class="mb-3">
@@ -48,7 +51,7 @@
       const password = document.getElementById('password').value;
 
       try {
-        const res = await fetch("http://localhost:8000/signup", {
+        const res = await fetch("https://pitlaneinsiders-backend.onrender.com/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, email, password })
