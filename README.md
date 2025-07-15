@@ -2,7 +2,7 @@
 
 Box! Box! Get Your F1 Insider Info!
 
-Welcome to **PitLane Insiders**, a comprehensive Formula 1 (F1) website designed to engage and inform F1 enthusiasts. This project provides detailed information about F1 teams, drivers, current standings, and interactive features like a quiz, a Multi Agentic AI chatbot and a discord bot.
+Welcome to **PitLane Insiders**, a comprehensive Formula 1 (F1) information website designed to engage and inform F1 enthusiasts. This project provides detailed information about F1 teams, drivers, current standings, and interactive features like a quiz, a Multi Agentic AI chatbot and a discord bot.
 
 ## 📖 Table of Contents
 
@@ -48,11 +48,15 @@ Welcome to **PitLane Insiders**, a comprehensive Formula 1 (F1) website designed
   - JavaScript
 - **Backend:**
   - FastAPI (Python)
+  - Agno (Agentic Framework)
   - Model Context Protocol server
 - **Database:**
   - SQL
 - **Discord bot**
   - Discord-py
+- **Cloud**
+   - AWS
+   - Render
 
 ## 📁 Project Structure
 ```
@@ -73,13 +77,11 @@ PitLaneInsiders/
 │   ├── quiz.html
 │   ├── signup.html
 │   ├── teams.html
-│   │
 │   ├── assets/
 │   │   ├── images/
 │   │   │   └── pitlane_logo.png
 │   │   └── videos/
 │   │       └── vid_f1_2.mp4
-│   │
 │   ├── css/
 │   │   ├── bootstrap/
 │   │   ├── fonts/
@@ -92,12 +94,10 @@ PitLaneInsiders/
 │   │   ├── bootstrap.min.css.map
 │   │   ├── style_drivers/
 │   │   └── style_quiz/
-│   │
 │   └── js/
 │   
 ├── Backend/
 │   ├── client.py
-│   │
 │   ├── mcp_server/
 │   │   ├── cache/
 │   │   ├── __pycache__/
@@ -108,10 +108,9 @@ PitLaneInsiders/
 │       ├── __init__.py
 │       ├── agent_workflow.py
 │       ├── news.py
-|       |
+|       ├── chathistory.py
 │       ├── chat/
 │       │   └── msg.db
-│       │
 │       └── user_db/
 │           ├── dbmaker.py
 │           ├── login.db
@@ -131,6 +130,11 @@ PitLaneInsiders/
 1. **Clone the repository:**
 
    ```bash
+   git clone https://github.com/Akashvarma26/PitLaneInsiders.git
+   cd PitLaneInsiders
+   ```
+   or
+   ```bash
    git clone https://github.com/amanparasher/PitLaneInsiders.git
    cd PitLaneInsiders
    ```
@@ -149,24 +153,33 @@ PitLaneInsiders/
    ```
 
 4. **Run the backend application:**    
- For MCP Server:
-   ```python
-   python mcp_f1.py
-   ```
-   or 
-   ```uv
-   uv run mcp_f1.py
-   ```
 
-   For FastAPI"
+   For FastAPI (MCP Server mounted)
       ```python
       uvicorn app:app --reload
       ```
+      or
+      ```uv
+      uv run app.py
+      ```
+      or
+      ```python
+      python run app.py
+      ```
+
+   For MCP Server (Use this only if you want to run the MCP server on its own without the FastAPI server above.)
+      ```python
+      python mcp_f1.py
+      ```
+      or 
+      ```uv
+      uv run mcp_f1.py
+      ```
    
    For frontend, Do not use live server. Instead use this command
-   ```python
-   python -m http.server 5500
-   ```
+      ```python
+      python -m http.server 5500
+      ```
 
 5. **Access the application in your browser:**
 

@@ -1,4 +1,25 @@
 const drivers_data = [
+  // Ferrari
+  {
+    name: "Charles Leclerc",
+    number: 16,
+    team: "Ferrari",
+    country: "Monaco",
+    flag: "https://cdn.britannica.com/50/2750-050-688E6E49/Flag-Monaco.jpg",
+    img: "https://media.formula1.com/image/upload/c_fill,w_720/q_auto/v1740000000/common/f1/2025/ferrari/chalec01/2025ferrarichalec01right.webp",
+    link: "https://www.formula1.com/en/drivers/charles-leclerc",
+    color: "rgb(220,0,0)"
+  },
+  {
+    name: "Lewis Hamilton",
+    number: 44,
+    team: "Ferrari",
+    country: "United Kingdom",
+    flag: "https://cdn.britannica.com/25/4825-050-977D8C5E/Flag-United-Kingdom.jpg",
+    img: "https://media.formula1.com/image/upload/c_fill,w_720/q_auto/v1740000000/common/f1/2025/ferrari/lewham01/2025ferrarilewham01right.webp",
+    link: "https://www.formula1.com/en/drivers/lewis-hamilton",
+    color: "rgb(220,0,0)"
+  },
   // McLaren
   {
     name: "Oscar Piastri",
@@ -40,27 +61,6 @@ const drivers_data = [
     img: "https://media.formula1.com/image/upload/c_fill,w_720/q_auto/v1740000000/common/f1/2025/mercedes/andant01/2025mercedesandant01right.webp",
     link: "https://www.formula1.com/en/drivers/kimi-antonelli",
     color: "teal"
-  },
-  // Ferrari
-  {
-    name: "Charles Leclerc",
-    number: 16,
-    team: "Ferrari",
-    country: "Monaco",
-    flag: "https://cdn.britannica.com/50/2750-050-688E6E49/Flag-Monaco.jpg",
-    img: "https://media.formula1.com/image/upload/c_fill,w_720/q_auto/v1740000000/common/f1/2025/ferrari/chalec01/2025ferrarichalec01right.webp",
-    link: "https://www.formula1.com/en/drivers/charles-leclerc",
-    color: "rgb(220,0,0)"
-  },
-  {
-    name: "Lewis Hamilton",
-    number: 44,
-    team: "Ferrari",
-    country: "United Kingdom",
-    flag: "https://cdn.britannica.com/25/4825-050-977D8C5E/Flag-United-Kingdom.jpg",
-    img: "https://media.formula1.com/image/upload/c_fill,w_720/q_auto/v1740000000/common/f1/2025/ferrari/lewham01/2025ferrarilewham01right.webp",
-    link: "https://www.formula1.com/en/drivers/lewis-hamilton",
-    color: "rgb(220,0,0)"
   },
   // Red Bull
   {

@@ -1,6 +1,6 @@
   const fetchNewsArticles = async () => {
     try {
-      const response = await fetch("https://pitlaneinsiders-backend.onrender.com/news"); // Replace with your deployed FastAPI URL
+      const response = await fetch("http://localhost:8000/news");
       const newsData = await response.json();
 
       let newsHTML = "";

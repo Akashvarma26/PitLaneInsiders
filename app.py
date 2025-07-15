@@ -48,7 +48,7 @@ origins = [
 
 # FastAPI app initialization
 app = FastAPI(
-    title="Pitlane Insiders",
+    title="Pitlane Insiders Backend",
     description="Website for Formula One community!!!",
     version="0.7.0",
     lifespan=lifespan_mcp
@@ -65,6 +65,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Root path
 @app.get("/")
 def root():
     print("Pinged!")
@@ -106,6 +107,7 @@ def verify_login(user_db:USER_DB):
         
         return {"message": f"Login successful. Welcome, {user_db.username}!"}
 
+# To display the chat history based on session id
 @app.post("/chathistory")
 def chat_history(session: CHAT_HISTORY):
     session_id=session.session_id
@@ -137,6 +139,7 @@ async def chat_llm(llm_input: LLM_Input):
 
     return StreamingResponse(stream_response(), media_type="text/plain")
 
+# To run the app
 if __name__=="__main__":
     import uvicorn
     uvicorn.run(app,host="0.0.0.0",port=PORT)
